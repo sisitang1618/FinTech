@@ -1,0 +1,5 @@
+
+*.vsidx
+*.ipch
+/SwaptionVol/.vs/SwaptionVol/v17
+/SwaptionVol/SwaptionVol/x64

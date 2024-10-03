@@ -25,6 +25,8 @@ double discountFactor(double start, double end) {
 double annuityPV(double start, double end) {
 	double PV = 0;
 	double i = end;
+	// assuming paying $1 every year
+	// roll convention = backward
 	while (i > start) {
 		PV += discountFactor(0, i);
 		i -= 1;
