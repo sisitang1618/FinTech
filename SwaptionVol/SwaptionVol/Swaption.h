@@ -20,8 +20,9 @@ private:
 	double tenor;
 	double vol;
 	double strike;
+	double par_swap_rate;
 public:
-	Swaption(SwaptionType tp, double st, double exp, double tnr, double sigma, double k);
+	Swaption(SwaptionType tp, double st, double exp, double tnr, double sigma, double k, double s0);
 	~Swaption() = default;
 	double OptionPrice();
 	double Delta();
