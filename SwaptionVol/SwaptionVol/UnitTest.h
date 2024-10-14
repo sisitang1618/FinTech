@@ -1,3 +1,3 @@
 #pragma once
 
-void TestAll();
+void SwaptionVol_TestAll();

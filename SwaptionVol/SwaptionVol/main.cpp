@@ -6,7 +6,7 @@
 
 int main()
 {
-    TestAll();
+    SwaptionVol_TestAll();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

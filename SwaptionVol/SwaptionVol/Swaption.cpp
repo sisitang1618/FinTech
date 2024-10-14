@@ -1,5 +1,6 @@
 #include "Swaption.h"
 #include "Annuity.h"
+#include "Utility\BasicStat.h"
 
 // ----------------------------------------------------------------------------------------
 //
@@ -21,7 +22,7 @@ Swaption::Swaption(SwaptionType tp, double st, double exp, double tnr, double si
 double Swaption::OptionPrice() {
 	double A0 = annuityPV(option_exp, option_exp + tenor);
 	if (type == SwaptionType::payer) {
-
 	}
-	return 0;
+	double temp = MyStat::GaussianCdf(0);
+	return temp;
 }

@@ -25,7 +25,7 @@ public:
 	Swaption(SwaptionType tp, double st, double exp, double tnr, double sigma, double k, double s0);
 	~Swaption() = default;
 	double OptionPrice();
-	double Delta();
-	double Vega();
-	double Gamma();
+	//double Delta();
+	//double Vega();
+	//double Gamma();
 };

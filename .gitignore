@@ -3,3 +3,5 @@
 *.ipch
 /SwaptionVol/.vs/SwaptionVol/v17
 /SwaptionVol/SwaptionVol/x64
+/SwaptionVol/x64/Debug
+/SwaptionVol/Utility/x64
