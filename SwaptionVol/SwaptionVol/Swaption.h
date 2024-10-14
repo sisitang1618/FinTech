@@ -6,7 +6,7 @@
 //
 // ----------------------------------------------------------------------------------------
 
-enum SwaptionType {
+enum class SwaptionType {
 	payer,
 	receiver,
 	straddle
@@ -14,18 +14,28 @@ enum SwaptionType {
 
 class Swaption {
 private:
-	SwaptionType type;
-	double option_start;
-	double option_exp;
-	double tenor;
-	double vol;
-	double strike;
-	double par_swap_rate;
+	// basic swaption specs
+	SwaptionType _type;
+	double _N;
+	double _optStart;
+	double _optExp;
+	double _tenor;
+	double _vol;
+	double _K;
+	double _S0;
+	// to store values
+	double _PV;
+	double _delta;
+	double _vega;
+	double _gamma;
+	// The values are stored because the authos believes they are used very frequent.
+	// Otherwise, they can be calculated on-the-fly.
 public:
-	Swaption(SwaptionType tp, double st, double exp, double tnr, double sigma, double k, double s0);
+	Swaption(SwaptionType type, double Notional, double optStart, double optExp, 
+		double tenor, double vol, double strike, double parSwpRate);
 	~Swaption() = default;
 	double OptionPrice();
-	//double Delta();
-	//double Vega();
-	//double Gamma();
+	double Delta();
+	double Vega();
+	double Gamma();
 };
