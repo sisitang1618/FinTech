@@ -42,8 +42,8 @@ public:
 	~Swaption() = default;
 	double OptionPrice();
 	double Delta(GreekType greekType = GreekType::instantaneous);
-	double Vega();
-	double Gamma();
+	double Vega(GreekType greekType = GreekType::instantaneous);
+	double Gamma(GreekType greekType = GreekType::instantaneous);
 	void displayDetail();
 
 };

@@ -67,13 +67,33 @@ double Swaption::Delta(GreekType greekType) {
 	
 }
 
-double Swaption::Vega() {
+double Swaption::Vega(GreekType greekType) {
 	
+	if (greekType == GreekType::finite_difference_1bps) {
+		Swaption deal1(_type, _N, _optStart, _optExp, _tenor, _vol + 0.0001, _K, _S0);
+		Swaption deal2(_type, _N, _optStart, _optExp, _tenor, _vol - 0.0001, _K, _S0);
+		return (deal1.OptionPrice() - deal2.OptionPrice()) / 2;
+	}
+	else if (greekType == GreekType::finite_difference_1pct) {
+		Swaption deal1(_type, _N, _optStart, _optExp, _tenor, _vol + 0.01, _K, _S0);
+		Swaption deal2(_type, _N, _optStart, _optExp, _tenor, _vol - 0.01, _K, _S0);
+		return (deal1.OptionPrice() - deal2.OptionPrice()) / 200;
+	}
 	return _vega;
 }
 
-double Swaption::Gamma() {
+double Swaption::Gamma(GreekType greekType) {
 
+	if (greekType == GreekType::finite_difference_1bps) {
+		Swaption deal1(_type, _N, _optStart, _optExp, _tenor, _vol, _K, _S0 + 0.0001);
+		Swaption deal2(_type, _N, _optStart, _optExp, _tenor, _vol, _K, _S0 - 0.0001);
+		return (deal1.OptionPrice() - 2 * this->OptionPrice() + deal2.OptionPrice());
+	}
+	else if (greekType == GreekType::finite_difference_1pct) {
+		Swaption deal1(_type, _N, _optStart, _optExp, _tenor, _vol, _K, _S0 + 0.01);
+		Swaption deal2(_type, _N, _optStart, _optExp, _tenor, _vol, _K, _S0 - 0.01);
+		return (deal1.OptionPrice() - 2 * this->OptionPrice() + deal2.OptionPrice()) / 10000;
+	}
 	return _gamma;
 }
 

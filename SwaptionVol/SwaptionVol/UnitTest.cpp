@@ -40,7 +40,7 @@ namespace { // Anonymous namepsace
     // 3. Swaption
     void test_Swaption_once(SwaptionType tp, double N, double start, double exp, double tnr, double sigma, double k, double s0) {
         
-        Swaption Swptn(SwaptionType::payer, N, start, exp, tnr, sigma, k, s0);
+        Swaption Swptn(tp, N, start, exp, tnr, sigma, k, s0);
         
         Swptn.displayDetail();
 
@@ -53,13 +53,18 @@ namespace { // Anonymous namepsace
         std::cout << "Delta (FD_1bps) = " << Swptn.Delta(GreekType::finite_difference_1bps) << std::endl;
         std::cout << "Delta (FD_1pct) = " << Swptn.Delta(GreekType::finite_difference_1pct) << std::endl;
         std::cout << "Vega = " << Swptn.Vega() << std::endl;
+        std::cout << "Vega (FD_1bps) = " << Swptn.Vega(GreekType::finite_difference_1bps) << std::endl;
+        std::cout << "Vega (FD_1pct) = " << Swptn.Vega(GreekType::finite_difference_1pct) << std::endl;
         std::cout << "Gamma = " << Swptn.Gamma() << std::endl;
+        std::cout << "Gamma (FD_1bps) = " << Swptn.Gamma(GreekType::finite_difference_1bps) << std::endl;
+        std::cout << "Gamma (FD_1pct) = " << Swptn.Gamma(GreekType::finite_difference_1pct) << std::endl;
         std::cout << std::endl;
 
     }
 
     void test_Swaption() {
         test_Swaption_once(SwaptionType::payer, 100000000, 0, 2, 5, 0.0107, 2.1993/100, 2.1993/100);
+        //test_Swaption_once(SwaptionType::receiver, 100000000, 0, 2, 5, 0.0107, 2.1993 / 100, 2.1993 / 100);
         test_Swaption_once(SwaptionType::payer, 100000000, 0, 1, 1, 0.0142, 2.6576666/100, 2.6576666/100);
         test_Swaption_once(SwaptionType::payer, 100000000, 0, 1, 1, 0.0135, 1.6576666/100, 2.6576666/100);
     }
