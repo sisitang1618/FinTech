@@ -12,17 +12,23 @@ enum class SwaptionType {
 	straddle
 };
 
+enum class GreekType {
+	instantaneous,
+	finite_difference_1bps,
+	finite_difference_1pct
+};
+
 class Swaption {
 private:
 	// basic swaption specs
 	SwaptionType _type;
-	double _N;
-	double _optStart;
-	double _optExp;
-	double _tenor;
-	double _vol;
-	double _K;
-	double _S0;
+	double _N;			// unit dollar
+	double _optStart;	// unit yr
+	double _optExp;		// unit yr
+	double _tenor;		// unit yr
+	double _vol;		// unit 1 (10000bps)
+	double _K;			// unit 1 (10000bps)
+	double _S0;			// unit 1 (10000bps)
 	// to store values
 	double _PV;
 	double _delta;
@@ -35,7 +41,9 @@ public:
 		double tenor, double vol, double strike, double parSwpRate);
 	~Swaption() = default;
 	double OptionPrice();
-	double Delta();
+	double Delta(GreekType greekType = GreekType::instantaneous);
 	double Vega();
 	double Gamma();
+	void displayDetail();
+
 };
